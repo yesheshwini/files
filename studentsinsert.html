@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<form>
+	<label>Enter name</label><input class="form-control" type="text" name="s_name" id="s_name"><br>
+    <label>Enter email</label><input class="form-control" type="email" name="email" id="email"><br>
+    <label> regno</label><input type="regno" name="regno" class="form-control" id="regno"><br>
+	<label> date of birth</label><input type="text" name="dob" class="form-control" id="dob"><br>
+	
+	<label>enter the address </label><input type="text" name="address" class="form-control" id="address"><br>
+	<label> enter your previous qualification</label><input type="text" name="prev_qual" class="form-control" id="prev_qual"><br>
+    <label> enter the class id</label><input type="class_id" name="class_id" class="form-control" id="class_id"><br>
+	<label> enter class name</label><input type="text" name="class_name" class="form-control" id="class_name"><br>
+	<label>Enter teacher id</label><input class="form-control" type="t_id" name="t_id" id="t_id"><br>
+    <label>teachers name</label><input type="text" name="t_name" class="form-control" id="t_name"><br>
+	
+
+		<button type="button" id="btn"> submit</button>
+
+	</form>
+
+	<script type="text/javascript">
+		$(function(){
+			alert('JavaScript is getting called')
+			$('#btn').click(function(){
+				alert('window is getting called')
+				var a=document.getElementById('s_name').value;
+				var b=document.getElementById('email').value;
+				var c=document.getElementById('regno').value;
+				var d=document.getElementById('dob').value;
+				var e=document.getElementById('address').value;
+				var f=document.getElementById('prev_qual').value;
+				var g=document.getElementById('class_id').value;
+				var h=document.getElementById('class_name').value;
+				var i=document.getElementById('t_id').value;
+				var j=document.getElementById('t_name').value;
+
+				alert(a+b+c+d+e+g+h+i+j)
+
+				$.ajax({
+
+					url:'studentscon.php',
+					type:'post',
+					data:{
+						"s_name":a,
+						"email":b,
+						"regno":c,
+						"dob":d,
+						"address":e,
+						"prev_qual":f,
+						"class_id":g,
+						"class_name":h,
+						"t_id":i,
+						"t_name":j
+
+					},
+					success:function(){
+					alert('row succesfully added')
+				},
+				error:function(){
+					alert('something is wrong')
+				}
+
+			})
+		})
+	})
+
+	</script>
+
+
+</body>
+</html>

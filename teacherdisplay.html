@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<button>Click me</button>
+
+<table class="table" id="history_display">
+    <thead>
+     <th>teacher ID</th>
+      <th>teacher Name</th>
+      <th>email</th>
+      <th>id no</th>
+      <th>address</th>
+      <th>classid</th>
+      <th>classname</th>
+    </thead>
+</table>
+
+<script type="text/javascript">
+	$(function(){
+		$('button').click(function(){
+			$.ajax({
+				url:'teacher.php',
+				type:'get',
+				data:{
+
+				},
+				success: function(response){
+					alert('Api called');
+					var obj=JSON.parse(response);
+
+                        var table_content=""
+                        $('#history_display').find( 'tr:not(:first)' ).remove();
+                        $.each(obj,function(index,value){
+                            table_content+="<tr>";
+                            table_content+="<td>"+value.t_id+"</td>";
+                            table_content+="<td>"+value.t_name+"</td>";
+                            table_content+="<td>"+value.email+"</td>";
+                            table_content+="<td>"+value.id_no+"</td>";
+                            table_content+="<td>"+value.address+"</td>";
+                            table_content+="<td>"+value.class_id+"</td>";
+                            table_content+="<td>"+value.class_name+"</td>";
+
+                            // table_content+="<td><button type='button' onclick='call("+value.id+")'>Click</button></td>";
+                            table_content+="</tr>";
+                        });
+                        $("#history_display").append(table_content);
+				},
+				error: function(){
+					alert('Something went wrong');
+				}
+			})
+		})
+		
+	})
+</script>
+</body>
+</html>

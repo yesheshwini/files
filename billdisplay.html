@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<button>Click me</button>
+
+<table class="table" id="history_display">
+    <thead>
+     <th>bill-id</th>
+      <th>bill_name</th>
+      <th>class_id</th>
+      <th>class_name</th>
+      <th>student_id</th>
+      <th>student_name</th>
+      <th>amt_paid</th>
+    </thead>
+</table>
+
+<script type="text/javascript">
+	$(function(){
+		$('button').click(function(){
+			$.ajax({
+				url:'bill_details.php',
+				type:'get',
+				data:{
+
+				},
+				success: function(response){
+					alert('Api called');
+					var obj=JSON.parse(response);
+
+                        var table_content=""
+                        $('#history_display').find( 'tr:not(:first)' ).remove();
+                        $.each(obj,function(index,value){
+                            table_content+="<tr>";
+                            table_content+="<td>"+value.bill_id+"</td>";
+                            table_content+="<td>"+value.bill_name+"</td>";
+                            table_content+="<td>"+value.class_id+"</td>";
+                            table_content+="<td>"+value.class_name+"</td>";
+                            table_content+="<td>"+value.student_id+"</td>";
+                            table_content+="<td>"+value.student_name+"</td>";
+                            table_content+="<td>"+value.amt_paid+"</td>";
+                            // table_content+="<td><button type='button' onclick='call("+value.id+")'>Click</button></td>";
+                            table_content+="</tr>";
+                        });
+                        $("#history_display").append(table_content);
+				},
+				error: function(){
+					alert('Something went wrong');
+				}
+			})
+		})
+		
+	})
+</script>
+</body>
+</html>

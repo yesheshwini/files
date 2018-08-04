@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<form>
+		
+		<label>Enter bill_name</label><input class="form-control" type="text" name="bill_name" id="bill_name"><br>
+
+		<label>Enter class_id</label><input class="form-control" type="class_id" name="class_id" id="class_id"><br>
+		<label>Enter class_name</label><input class="form-control" type="class_name" name="class_name" id="class_name"><br>
+
+		<label>Enter student_id</label><input class="form-control" type="student_id" name="student_id" id="student_id"><br>
+		<label>enter student_name</label><input type="student_name" name="student_name" class="form-control" id="student_name"><br>
+
+		<label>enter amt_paid</label><input type="amt_paid" name="amt_paid" class="form-control" id="amt_paid">
+
+		<button type="button" id="btn"> submit</button>
+
+	</form>
+
+	<script type="text/javascript">
+		$(function(){
+			alert('JavaScript is getting called')
+			$('#btn').click(function(){
+				alert('window is getting called')
+				var a=document.getElementById('bill_name').value;
+				var b=document.getElementById('class_id').value;
+				var c=document.getElementById('class_name').value;
+				var d=document.getElementById('student_id').value;
+				var e=document.getElementById('student_name').value;
+				var f=document.getElementById('amt_paid').value;
+				alert(a+b+c+d+e+f)
+
+				$.ajax({
+
+					url:'billcon.php',
+					type:'post',
+					data:{
+						"bill_name":a,
+						"class_id":b,
+						"class_name":c,
+						"student_id":d,
+						"student_name":e,
+						"amt_paid":f
+					},
+					success:function(){
+					alert('row succesfully added')
+				},
+				error:function(){
+					alert('something is wrong')
+				}
+
+			})
+		})
+	})
+
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<form>
+		<label>Enter name</label><input class="form-control" type="text" id="u_name" name="u_name"><br>
+		<label>Enter email</label><input class="form-control" type="email"  id="email" name="email"><br>
+		<label>Enter password</label><input class="form-control" type="password"  id="password" name="password"><br>
+		<label>Enter role</label><input class="form-control" type="role"  id="role" name="role"><br>
+		<button type="button" id="btn">
+			submit</button>
+		</button>
+	</form>
+	<script type="text/javascript">
+		
+			$(function(){
+					alert('java script is called')
+			
+			// alert('javascript error')
+			$('#btn').click(function(){
+				alert('getting called')
+				var a=document.getElementById('u_name').value;
+				var b=document.getElementById('email').value;
+				var c=document.getElementById('password').value;
+				var d=document.getElementById('role').value;
+				alert(a+b+c+d)
+				$.ajax({
+					url:'userscon.php',
+					type:'post',
+					data:{
+						"u_name":a,
+						"email":b,
+						"password":c,
+						"role":d
+					},
+					success:function(){
+						alert('row added success fully')
+					},
+					error:function(){
+						alert('something is  wrong')
+					}
+				})
+			})
+		})
+	</script>
+</body>
+</html>
